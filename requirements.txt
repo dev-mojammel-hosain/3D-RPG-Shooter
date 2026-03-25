@@ -1,0 +1,11 @@
+# Core game window, events, and 2D UI rendering
+pygame>=2.5.0
+
+# OpenGL bindings for 3D rendering
+PyOpenGL>=3.1.7
+
+# Fast array manipulation for OpenGL vertex buffers
+numpy>=1.24.0
+
+# Mathematics library for 3D matrices, vectors, and camera projections
+PyGLM>=2.7.0

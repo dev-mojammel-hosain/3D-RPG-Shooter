@@ -1,0 +1,2 @@
+In the terminal type
+=> pip install -r requirements.txt
