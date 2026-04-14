@@ -34,7 +34,7 @@ class UIRenderer:
                 self.logo_img = pygame.transform.smoothscale(img, (target_w, target_h))
             except: pass
             
-        # Load Background Banner (For Main Menu)
+        # Load Background Banner & Level BG
         self.banner_img = None
         if os.path.exists("assets/banner.png"):
             try:
@@ -42,7 +42,6 @@ class UIRenderer:
                 self.banner_img = pygame.transform.smoothscale(img, (self.width, self.height))
             except: pass
 
-        # --- Load your Pre-Blurred Level Background ---
         self.level_bg = None
         if os.path.exists("assets/level.png"):
             try:
@@ -50,14 +49,13 @@ class UIRenderer:
                 self.level_bg = pygame.transform.smoothscale(img, (self.width, self.height))
             except: pass
 
-        # Load Difficulty Thumbnails (16:9 Aspect Ratio)
+        # Load Difficulty Thumbnails
         self.diff_thumbs = {}
         for diff_name, file_name in [("EASY", "easy.png"), ("NORMAL", "medium.png"), ("HARD", "hard.png")]:
             path = f"assets/{file_name}"
             if os.path.exists(path):
                 try:
                     img = pygame.image.load(path).convert_alpha()
-                    # Scale to a 16:9 small card size (e.g., 256x144)
                     self.diff_thumbs[diff_name] = pygame.transform.smoothscale(img, (256, 144))
                 except: pass
 
@@ -95,6 +93,35 @@ class UIRenderer:
         rect = surface.get_rect(center=(self.width // 2, self.height // 2 + y_offset))
         self.surface.blit(shadow, (rect.x + 3, rect.y + 3))
         self.surface.blit(surface, rect)
+
+    # --- FACULTY REQUIREMENT: DDA LINE DRAWING ALGORITHM ---
+    def draw_line_dda(self, x1, y1, x2, y2, color):
+        """
+        Draws a line pixel-by-pixel using the Digital Differential Analyzer (DDA) algorithm.
+        This demonstrates manual software rasterization without relying on hardware acceleration.
+        """
+        dx = x2 - x1
+        dy = y2 - y1
+
+        # Calculate steps required for generating pixels
+        steps = max(abs(dx), abs(dy))
+        if steps == 0:
+            return
+
+        # Calculate the increment in x and y for each step
+        x_inc = dx / steps
+        y_inc = dy / steps
+
+        # Place pixels loop
+        x = x1
+        y = y1
+        for _ in range(int(steps) + 1):
+            # Ensure coordinates are within surface bounds before setting the pixel
+            if 0 <= int(x) < self.width and 0 <= int(y) < self.height:
+                self.surface.set_at((int(x), int(y)), color)
+            x += x_inc
+            y += y_inc
+    # -------------------------------------------------------
 
     def draw(self, state_str, health, score, highscore_data=None, current_diff="NORMAL", fade_alpha=0.0):
         self.surface.fill((0, 0, 0, 0))
@@ -134,10 +161,9 @@ class UIRenderer:
             pygame.draw.circle(self.surface, (255, 255, 255), (mx, my), 8, 2)
 
         elif state_str == "DIFFICULTY_MENU":
-            # --- Draw the level.png background ---
             if self.level_bg: 
                 self.surface.blit(self.level_bg, (0, 0))
-            elif self.banner_img:
+            elif self.banner_img: 
                 self.surface.blit(self.banner_img, (0, 0))
                 self.surface.fill((0, 0, 0, 180)) 
             else: 
@@ -145,33 +171,27 @@ class UIRenderer:
 
             self.draw_text_centered("SELECT DIFFICULTY", self.title_font, (255, 255, 255), -220)
 
-            # ---- Show High Score Data if available ----
             if highscore_data:
                 hs_text = f"HIGHEST SCORE: {highscore_data['score']} ({highscore_data['level']})"
                 self.draw_text_centered(hs_text, self.font, (255, 200, 50), -140)
 
-            # Draw Thumbnail Cards
             diffs = [("EASY", -300), ("NORMAL", 0), ("HARD", 300)]
             for diff_text, x_off in diffs:
                 rect = pygame.Rect(0, 0, 256, 144)
                 rect.center = (cx + x_off, cy - 10)
-                
                 is_hover = rect.collidepoint((mx, my))
                 is_selected = (current_diff == diff_text)
                 border_color = (0, 255, 100) if is_selected else (200, 200, 200)
 
-                # Draw the Image if it exists, otherwise a fallback box
                 if diff_text in self.diff_thumbs:
                     self.surface.blit(self.diff_thumbs[diff_text], rect.topleft)
                 else:
                     pygame.draw.rect(self.surface, (80, 80, 80), rect)
                     self.draw_text_centered(diff_text, self.font, (255, 255, 255), -10)
                 
-                # Draw selection/hover border
                 if is_hover or is_selected:
                     pygame.draw.rect(self.surface, border_color, rect, 4)
 
-            # Draw Start and Back buttons
             actions = [("START", 130), ("BACK", 210)]
             for text, y_off in actions:
                 rect = pygame.Rect(0, 0, 300, 60); rect.center = (cx, cy + y_off)
@@ -188,13 +208,31 @@ class UIRenderer:
             pygame.draw.circle(self.surface, (255, 255, 255), (mx, my), 8, 2)
 
         elif state_str == "GAMEPLAY":
+            # Draw HUD
             pygame.draw.rect(self.surface, (50, 50, 50), (20, 20, 200, 25))
             pygame.draw.rect(self.surface, (50, 255, 50) if health > 30 else (255, 50, 50), (20, 20, max(0, health) * 2, 25))
             pygame.draw.rect(self.surface, (255, 255, 255), (20, 20, 200, 25), 3)
             score_txt = self.font.render(f"SCORE: {score}", True, (255, 200, 50))
             self.surface.blit(score_txt, (20, 60))
-            pygame.draw.circle(self.surface, (0, 255, 100), (mx, my), 18, 2)
+            
+            # --- FACULTY REQUIREMENT IN ACTION: DDA TACTICAL CROSSHAIR ---
+            # Center red dot
             pygame.draw.circle(self.surface, (255, 50, 50), (mx, my), 3)
+            
+            # Use DDA to draw the outer crosshair lines manually
+            gap = 10
+            length = 25
+            c_color = (0, 255, 100) # Bright green
+            
+            # Right line
+            self.draw_line_dda(mx + gap, my, mx + gap + length, my, c_color)
+            # Left line
+            self.draw_line_dda(mx - gap, my, mx - gap - length, my, c_color)
+            # Bottom line
+            self.draw_line_dda(mx, my + gap, mx, my + gap + length, c_color)
+            # Top line
+            self.draw_line_dda(mx, my - gap, mx, my - gap - length, c_color)
+            # -------------------------------------------------------------
 
         elif state_str == "PAUSED":
             self.surface.fill((0, 0, 0, 180)) 
@@ -222,7 +260,6 @@ class UIRenderer:
                 
             self.draw_text_centered(f"FINAL SCORE: {score}", self.font, (255, 200, 50), 10)
             
-            # --- NEW: Interactive Game Over Buttons ---
             buttons = [("RESTART", 100), ("MAIN MENU", 180)]
             for text, y_off in buttons:
                 rect = pygame.Rect(0, 0, 300, 60); rect.center = (cx, cy + y_off)
@@ -236,7 +273,6 @@ class UIRenderer:
                     self.draw_text_centered(text, self.font, (255, 255, 255), y_off)
             pygame.draw.circle(self.surface, (255, 255, 255), (mx, my), 8, 2)
 
-        # --- GLOBAL SCREEN FADE OVERLAY ---
         if fade_alpha > 0.0:
             fade_surf = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
             fade_surf.fill((0, 0, 0, int(min(255, max(0, fade_alpha)))))
