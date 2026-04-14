@@ -47,6 +47,11 @@ def check_aabb_collision(x1, z1, w1, d1, x2, z2, w2, d2):
 def main():
     pygame.init()
     
+    # --- Force Windows to use Modern OpenGL (3.3 Core) ---
+    pygame.display.gl_set_attribute(pygame.GL_CONTEXT_MAJOR_VERSION, 3)
+    pygame.display.gl_set_attribute(pygame.GL_CONTEXT_MINOR_VERSION, 3)
+    pygame.display.gl_set_attribute(pygame.GL_CONTEXT_PROFILE_MASK, pygame.GL_CONTEXT_PROFILE_CORE)
+
     # --- SETUP RESOLUTION ---
     display_resolution = (1920, 1080)
     pygame.display.set_mode(display_resolution, DOUBLEBUF | OPENGL | FULLSCREEN)

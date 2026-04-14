@@ -1,2 +1,3 @@
 In the terminal type
+=>python3 -m pip install pygame-ce PyOpenGL PyGLM numpy trimesh
 => pip install -r requirements.txt

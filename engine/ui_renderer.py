@@ -145,6 +145,11 @@ class UIRenderer:
 
             self.draw_text_centered("SELECT DIFFICULTY", self.title_font, (255, 255, 255), -220)
 
+            # ---- Show High Score Data if available ----
+            if highscore_data:
+                hs_text = f"HIGHEST SCORE: {highscore_data['score']} ({highscore_data['level']})"
+                self.draw_text_centered(hs_text, self.font, (255, 200, 50), -140)
+
             # Draw Thumbnail Cards
             diffs = [("EASY", -300), ("NORMAL", 0), ("HARD", 300)]
             for diff_text, x_off in diffs:
