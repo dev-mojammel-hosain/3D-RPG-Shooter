@@ -24,7 +24,7 @@ class Mesh:
             triangle_normals = np.zeros((len(triangle_vertices), 3))
             triangle_normals[:, 1] = 1.0 # Default point UP
 
-        # Stack: [X,Y,Z,  U,V,  NX,NY,NZ] -> 8 floats per point
+        # Vertex Data (Position, UV, Normal)
         vertex_data = np.hstack((triangle_vertices, triangle_uvs, triangle_normals)).astype(np.float32).flatten()
         self.vertex_count = len(vertex_data) // 8
 

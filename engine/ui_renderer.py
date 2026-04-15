@@ -94,7 +94,7 @@ class UIRenderer:
         self.surface.blit(shadow, (rect.x + 3, rect.y + 3))
         self.surface.blit(surface, rect)
 
-    # --- FACULTY REQUIREMENT: DDA LINE DRAWING ALGORITHM ---
+    # --- DDA LINE DRAWING ALGORITHM ---
     def draw_line_dda(self, x1, y1, x2, y2, color):
         """
         Draws a line pixel-by-pixel using the Digital Differential Analyzer (DDA) algorithm.
@@ -215,7 +215,7 @@ class UIRenderer:
             score_txt = self.font.render(f"SCORE: {score}", True, (255, 200, 50))
             self.surface.blit(score_txt, (20, 60))
             
-            # --- FACULTY REQUIREMENT IN ACTION: DDA TACTICAL CROSSHAIR ---
+            # --- DDA TACTICAL CROSSHAIR ---
             # Center red dot
             pygame.draw.circle(self.surface, (255, 50, 50), (mx, my), 3)
             

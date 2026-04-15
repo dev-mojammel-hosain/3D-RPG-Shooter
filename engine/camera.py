@@ -17,9 +17,11 @@ class Camera:
         self.smooth_speed = 5.0  # How fast the camera catches up (higher = stiffer)
 
     def get_view_matrix(self):
+        # Moves the world which creates the illusion of the camera moving
         return glm.lookAt(self.position, self.target, self.up)
 
     def update_projection(self, width, height):
+        # Calculate the aspect ratio and create an orthographic projection matrix
         aspect = width / height
         self.projection_matrix = glm.ortho(
             -self.zoom * aspect, self.zoom * aspect, 
@@ -30,7 +32,9 @@ class Camera:
     def get_projection_matrix(self):
         return self.projection_matrix
 
+    # This function is called every frame to update the camera's position based on the player's position.
     def follow_target(self, player_x, player_z, delta_time):
+
         # 1. Find the distance between the player and where the camera is currently looking
         dist_x = player_x - self.target.x
         dist_z = player_z - self.target.z
