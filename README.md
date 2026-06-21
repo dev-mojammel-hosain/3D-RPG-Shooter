@@ -2,7 +2,7 @@
 **A Hardware-Accelerated Spatial Computing & Graphics Pipeline Built from First Principles**
 
 <p align="center">
-  <img src="assets/banner.png" alt="Isometric Engine View" width="600px" />
+  <img src="assets/banner.png" alt="Isometric Engine View" width="100%" />
 </p>
 
 This repository contains a proprietary, fully custom 3D rendering engine and isometric RPG shooter engineered natively in Python 3. Bypassing high-level commercial abstraction layers (e.g., Unity, Unreal Engine), this project demonstrates absolute, low-level control over the CPU-to-GPU data pipeline, graphics memory allocation, and spatial mathematics.
@@ -46,6 +46,13 @@ The engine is built natively in Python and requires standard data science and gr
     ```
 
 ---
+
+<p align="center">
+  <img src="assets/screenshots/sc2.png" alt="Isometric Engine View" width="50%" />
+  <img src="assets/screenshots/sc4.png" alt="Isometric Engine View" width="50%" />
+  <img src="assets/screenshots/sc1.png" alt="Isometric Engine View" width="50%" />
+  <img src="assets/screenshots/sc3.png" alt="Isometric Engine View" width="50%" />
+</p>
 
 ## 🧠 Architectural Relevance to Machine Learning & AI
 
