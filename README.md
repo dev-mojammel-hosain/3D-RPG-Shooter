@@ -48,10 +48,14 @@ The engine is built natively in Python and requires standard data science and gr
 ---
 
 <p align="center">
-  <img src="assets/screenshots/sc2.png" alt="Isometric Engine View" width="50%" />
-  <img src="assets/screenshots/sc4.png" alt="Isometric Engine View" width="50%" />
-  <img src="assets/screenshots/sc1.png" alt="Isometric Engine View" width="50%" />
-  <img src="assets/screenshots/sc3.png" alt="Isometric Engine View" width="50%" />
+  <tr>
+    <td><img src="assets/screenshots/sc2.png" alt="Isometric Engine View" width="50%" /></td>
+    <td><img src="assets/screenshots/sc4.png" alt="Isometric Engine View" width="50%" /></td>
+  </tr>
+  <tr>
+    <td><img src="assets/screenshots/sc1.png" alt="Isometric Engine View" width="50%" /></td>
+    <td><img src="assets/screenshots/sc3.png" alt="Isometric Engine View" width="50%" /></td>
+  </tr>
 </p>
 
 ## 🧠 Architectural Relevance to Machine Learning & AI
@@ -171,13 +175,13 @@ The codebase enforces strict separation of concerns, isolating mathematical logi
 
 This engine was architected and developed collaboratively, with strict separation of concerns to ensure modularity and high-performance execution.
 
-* **Mojammel Hosain Jesan**
+* **`Mojammel Hosain Jesan`**
     * *Core Engine Architect & Graphics Developer*
     * Engineered Camera MVP matrices, `.glb` asset memory translation, VAO/VBO architecture, and GLSL Shader compilation.
-* **Rakib Chowdhury**
+* **`Rakib Chowdhury`**
     * *Physics & Spatial Logic Engineer*
     * Designed Object-Oriented entity frameworks, AABB collision hit registration, vector normalization, and 3D unprojection logic.
-* **Abrar Mahir Chowdhury**
+* **`Abrar Mahir Chowdhury`**
     * *Systems & State Flow Architect*
     * Implemented Finite State Machine routing, UI compositing, persistent data serialization, and manual DDA algorithmic rendering.
 
