@@ -7,6 +7,42 @@ Designed with the rigorous architectural standards required for machine learning
 
 ---
 
+## 💻 Installation & Execution
+
+The engine is built natively in Python and requires standard data science and graphics libraries. 
+
+### Prerequisites
+* Python 3.10 or higher
+* A GPU supporting OpenGL 3.3 Core Profile or higher
+* Git (for repository cloning)
+
+### Environment Setup & Execution
+1.  **Clone the repository (Private Access Only):**
+    ```bash
+    git clone [https://github.com/YourOrg/3d-rpg-engine.git](https://github.com/YourOrg/3d-rpg-engine.git)
+    cd 3d-rpg-engine
+    ```
+2.  **Create and activate a virtual environment (Recommended):**
+    ```bash
+    python -m venv venv
+    
+    # On Linux/macOS:
+    source venv/bin/activate  
+    
+    # On Windows:
+    venv\Scripts\activate
+    ```
+3.  **Install hardware and mathematical dependencies:**
+    ```bash
+    pip install pygame PyOpenGL PyGLM numpy trimesh
+    ```
+4.  **Execute the Engine Core:**
+    ```bash
+    python main.py
+    ```
+
+---
+
 ## 🧠 Architectural Relevance to Machine Learning & AI
 
 For ML and AI engineers, manipulating multidimensional arrays and understanding spatial compute are foundational. This engine translates those exact principles into real-time visual output:
@@ -45,6 +81,7 @@ P_target = P_near + (v_ray * t)
 Enemies calculate the Euclidean distance (d) to the player to generate a normalized directional vector, ensuring consistent travel speed regardless of angle:
 d = sqrt(Δx² + Δz²)
 v_norm = (Δx / d, Δz / d)
+$$d = \sqrt{\Delta x^2 + \Delta z^2}$$$$\hat{v} = \left( \frac{\Delta x}{d}, \frac{\Delta z}{d} \right)$$
 
 ---
 
@@ -105,3 +142,37 @@ The codebase enforces strict separation of concerns, isolating mathematical logi
 ├── /assets                  # .glb models, .png textures, fonts
 ├── main.py                  # Pygame execution loop, Context initialization
 └── README.md                # Documentation
+
+---
+
+## 👥 Engineering Team
+
+This engine was architected and developed collaboratively, with strict separation of concerns to ensure modularity and high-performance execution.
+
+* **Mojammel Hosain Jesan**
+    * *Core Engine Architect & Graphics Developer*
+    * Engineered Camera MVP matrices, `.glb` asset memory translation, VAO/VBO architecture, and GLSL Shader compilation.
+* **Rakib Chowdhury**
+    * *Physics & Spatial Logic Engineer*
+    * Designed Object-Oriented entity frameworks, AABB collision hit registration, vector normalization, and 3D unprojection logic.
+* **Abrar Mahir Chowdhury**
+    * *Systems & State Flow Architect*
+    * Implemented Finite State Machine routing, UI compositing, persistent data serialization, and manual DDA algorithmic rendering.
+
+**Contact the Team:** [mojammelkhan567@gmail.com](mailto:mojammelkhan567@gmail.com)
+
+---
+
+## ⚖️ License & Copyright
+
+**Copyright (c) 2026 Mojammel Hosain Jesan, Rakib Chowdhury & Abrar Mahir Chowdhury.**
+
+**ALL RIGHTS RESERVED.**
+
+This software, source code, and associated documentation files (the "Software") are the proprietary property of the copyright holders: Mojammel Hosain Jesan, Rakib Chowdhury, and Abrar Mahir Chowdhury.
+
+1.  **RESTRICTIONS ON USE:** You are strictly prohibited from using, copying, modifying, merging, publishing, distributing, sublicensing, and/or selling copies of the Software in any capacity.
+2.  **NO COMMERCIAL OR PRODUCTION USAGE:** This Software may not be used for any commercial, production, corporate, or revenue-generating purposes under any circumstances without the explicit, written permission of the copyright holders.
+3.  **REPOSITORY ACCESS:** The presence of this code in a public repository is strictly for portfolio viewing and educational reference. It does not grant any implicit or explicit rights to utilize the codebase.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
