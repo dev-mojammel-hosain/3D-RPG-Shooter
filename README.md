@@ -72,7 +72,7 @@ The engine relies on raw mathematical implementations rather than pre-built phys
 Entity spatial positioning is governed by the Model matrix ($M$), calculated by multiplying Translation ($T$), Rotation ($R$), and Scale ($S$) matrices:
 
 <div align="center">
-  <kbd><h2>$$M = T \cdot R \cdot S$$</h2></kbd>
+  <h1>$$M = T \cdot R \cdot S$$</h1>
 </div>
 
 
@@ -80,8 +80,8 @@ Entity spatial positioning is governed by the Model matrix ($M$), calculated by 
 To pinpoint aiming, the engine calculates the scalar distance 't' along a 3D ray vector to intersect the horizontal plane at the player's weapon height ($y_{target} = 1.0$):
 
 <div align="center">
-  <kbd><h2>$$t = \frac{y_{target} - y_{near}}{y_{ray\_dir}}$$</h2></kbd>
-  <kbd><h2>$$P_{target} = P_{near} + v_{ray} \cdot t$$</h2></kbd>
+  <h1>$$t = \frac{y_{target} - y_{near}}{y_{ray\_dir}}$$</h1>
+  <h1>$$P_{target} = P_{near} + v_{ray} \cdot t$$</h1>
 </div>
 
 
@@ -89,8 +89,8 @@ To pinpoint aiming, the engine calculates the scalar distance 't' along a 3D ray
 Enemies calculate the Euclidean distance (d) to the player to generate a normalized directional vector, ensuring consistent travel speed regardless of angle:
 
 <div align="center">
-  <kbd><h2>$$d = \sqrt{\Delta x^2 + \Delta z^2}$$</h2></kbd>
-  <kbd><h2>$$\hat{v} = \left( \frac{\Delta x}{d}, \frac{\Delta z}{d} \right)$$</h2></kbd>
+  <h1>$$d = \sqrt{\Delta x^2 + \Delta z^2}$$</h1>
+  <h1>$$\hat{v} = \left( \frac{\Delta x}{d}, \frac{\Delta z}{d} \right)$$</h1>
 </div>
 
 ---
