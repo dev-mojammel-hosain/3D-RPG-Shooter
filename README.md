@@ -49,12 +49,12 @@ The engine is built natively in Python and requires standard data science and gr
 
 <p align="center">
   <tr>
-    <td><img src="assets/screenshots/sc2.png" alt="Isometric Engine View" width="50%" /></td>
-    <td><img src="assets/screenshots/sc4.png" alt="Isometric Engine View" width="50%" /></td>
+    <td><img src="assets/screenshots/sc2.png" alt="Isometric Engine View" width="40%" /></td>
+    <td><img src="assets/screenshots/sc4.png" alt="Isometric Engine View" width="40%" /></td>
   </tr>
   <tr>
-    <td><img src="assets/screenshots/sc1.png" alt="Isometric Engine View" width="50%" /></td>
-    <td><img src="assets/screenshots/sc3.png" alt="Isometric Engine View" width="50%" /></td>
+    <td><img src="assets/screenshots/sc1.png" alt="Isometric Engine View" width="40%" /></td>
+    <td><img src="assets/screenshots/sc3.png" alt="Isometric Engine View" width="40%" /></td>
   </tr>
 </p>
 
