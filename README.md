@@ -69,8 +69,8 @@ For ML and AI engineers, manipulating multidimensional arrays and understanding 
 The engine relies on raw mathematical implementations rather than pre-built physics engines:
 
 ### 1. Matrix Transformations (TRS)
-Entity spatial positioning is governed by the Model matrix (M), calculated by multiplying Translation (T), Rotation (R), and Scale (S) matrices:
-M = T * R * S
+Entity spatial positioning is governed by the Model matrix ($M$), calculated by multiplying Translation ($T$), Rotation ($R$), and Scale ($S$) matrices:
+$$M = T \cdot R \cdot S$$
 
 ### 2. Raycast Intersection (Screen to World)
 To pinpoint aiming, the engine calculates the scalar distance 't' along a 3D ray vector to intersect the horizontal plane at the player's weapon height (y_target = 1.0):
