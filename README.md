@@ -70,19 +70,28 @@ The engine relies on raw mathematical implementations rather than pre-built phys
 
 ### 1. Matrix Transformations (TRS)
 Entity spatial positioning is governed by the Model matrix ($M$), calculated by multiplying Translation ($T$), Rotation ($R$), and Scale ($S$) matrices:
+
 <div align="center">
   <h2>$$M = T \cdot R \cdot S$$</h2>
 </div>
 
+
 ### 2. Raycast Intersection (Screen to World)
-To pinpoint aiming, the engine calculates the scalar distance 't' along a 3D ray vector to intersect the horizontal plane at the player's weapon height (y_target = 1.0):
-t = (y_target - y_near) / y_ray_dir
-P_target = P_near + (v_ray * t)
+To pinpoint aiming, the engine calculates the scalar distance 't' along a 3D ray vector to intersect the horizontal plane at the player's weapon height ($y_{target} = 1.0$):
+
+<div align="center">
+  <h2>$$t = \frac{y_{target} - y_{near}}{y_{ray\_dir}}$$</h2>
+  <h2>$$P_{target} = P_{near} + v_{ray} \cdot t$$</h2>
+</div>
+
 
 ### 3. AI Vector Normalization
 Enemies calculate the Euclidean distance (d) to the player to generate a normalized directional vector, ensuring consistent travel speed regardless of angle:
-d = sqrt(Δx² + Δz²)
-v_norm = (Δx / d, Δz / d)
+
+<div align="center">
+  <h2>$$d = \sqrt{\Delta x^2 + \Delta z^2}$$</h2>
+  <h2>$$\hat{v} = \left( \frac{\Delta x}{d}, \frac{\Delta z}{d} \right)$$</h2>
+</div>
 
 ---
 
