@@ -1,6 +1,10 @@
 # Custom 3D Rendering Engine & Isometric RPG Shooter
 **A Hardware-Accelerated Spatial Computing & Graphics Pipeline Built from First Principles**
 
+<p align="center">
+  <img src="assets/banner.png" alt="Isometric Engine View" width="600px" />
+</p>
+
 This repository contains a proprietary, fully custom 3D rendering engine and isometric RPG shooter engineered natively in Python 3. Bypassing high-level commercial abstraction layers (e.g., Unity, Unreal Engine), this project demonstrates absolute, low-level control over the CPU-to-GPU data pipeline, graphics memory allocation, and spatial mathematics.
 
 Designed with the rigorous architectural standards required for machine learning and AI development, this engine showcases the implementation of hardware-accelerated tensor/matrix transformations, vectorized memory operations, and continuous algorithmic evaluation.
