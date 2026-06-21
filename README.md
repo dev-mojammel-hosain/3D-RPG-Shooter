@@ -81,7 +81,6 @@ P_target = P_near + (v_ray * t)
 Enemies calculate the Euclidean distance (d) to the player to generate a normalized directional vector, ensuring consistent travel speed regardless of angle:
 d = sqrt(Δx² + Δz²)
 v_norm = (Δx / d, Δz / d)
-$$d = \sqrt{\Delta x^2 + \Delta z^2}$$$$\hat{v} = \left( \frac{\Delta x}{d}, \frac{\Delta z}{d} \right)$$
 
 ---
 
@@ -142,6 +141,7 @@ The codebase enforces strict separation of concerns, isolating mathematical logi
 ├── /assets                  # .glb models, .png textures, fonts
 ├── main.py                  # Pygame execution loop, Context initialization
 └── README.md                # Documentation
+```
 
 ---
 
